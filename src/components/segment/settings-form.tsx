@@ -22,9 +22,9 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from 'next-intl';
 
 const FormSchema = z.object({
-  shipPlacementOpen: z.boolean().default(false),
-  bombingOpen: z.boolean().default(false),
-  isPublic: z.boolean().default(false),
+  shipPlacementOpen: z.boolean(),
+  bombingOpen: z.boolean(),
+  isPublic: z.boolean(),
 })
 
 interface SettingsFormProps {

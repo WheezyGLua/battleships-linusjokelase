@@ -95,8 +95,8 @@ export async function placeBomb(
 
     if (!phase) throw new Error("Phase not found");
 
-    // Check Lock Time
-    if (phase.lockTime && new Date() >= phase.lockTime) {
+    // Check Lock Time (placementEndTime is when bomb placement closes)
+    if (phase.placementEndTime && new Date() >= phase.placementEndTime) {
         throw new Error("This bombing phase is locked");
     }
 

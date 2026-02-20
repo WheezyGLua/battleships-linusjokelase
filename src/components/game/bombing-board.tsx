@@ -19,7 +19,7 @@ interface BombingBoardProps {
   segmentId: string;
   targetTeamId: string;
   bombs: { x: number; y: number; status: "hit" | "miss" | "pending"; phaseId?: string | null }[];
-  phases: { id: string; name: string; lockTime: Date | null; releaseTime: Date | null }[];
+  phases: { id: string; name: string; placementEndTime: Date; releaseTime: Date | null }[];
 }
 
 export function BombingBoard({ segmentId, targetTeamId, bombs, phases }: BombingBoardProps) {
@@ -29,7 +29,7 @@ export function BombingBoard({ segmentId, targetTeamId, bombs, phases }: Bombing
     const selectedPhase = phases.find(p => p.id === selectedPhaseId);
     
     // Check lock status
-    const isLocked = selectedPhase?.lockTime ? new Date() >= new Date(selectedPhase.lockTime) : false;
+    const isLocked = selectedPhase?.placementEndTime ? new Date() >= new Date(selectedPhase.placementEndTime) : false;
 
     // Filter bombs? No, showing all for now as per previous logic decision (show context).
     // But maybe we want to highlight bombs from this phase?
@@ -91,9 +91,9 @@ export function BombingBoard({ segmentId, targetTeamId, bombs, phases }: Bombing
                         ))}
                       </SelectContent>
                     </Select>
-                    {selectedPhase?.lockTime && (
+                    {selectedPhase?.placementEndTime && (
                          <p className="text-xs text-muted-foreground mt-2">
-                            Locks at: {new Date(selectedPhase.lockTime).toLocaleString()}
+                            Locks at: {new Date(selectedPhase.placementEndTime).toLocaleString()}
                          </p>
                     )}
                 </CardContent>

@@ -1,6 +1,6 @@
 
 import { db } from "@/db";
-import { segmentMembers, users } from "@/db/schema"; // Assuming users table logic or we fetch from auth?
+import { segmentMembers } from "@/db/schema";
 // segmentMembers has userId. User names logic is tricky if using BetterAuth directly.
 // We can fetch from BetterAuth API or if we have a users table synced? 
 // Schema says: "Foreign keys to 'user' table are logical only".
